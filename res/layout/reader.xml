@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/background_light"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnCongrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Congratulations!"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold" 
+        android:textColor="@android:color/holo_green_dark"
+        android:focusable="false"
+        >
+    </Button>
+    
+<!--     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reader" />
+ -->
+    <ListView
+        android:id="@+id/recordListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="@android:color/holo_green_dark"
+        android:dividerHeight="2px"
+        android:orientation="vertical" />
+
+    <!-- android:cacheColorHint="@android:color/transparent" -->
+    <!-- android:divider="@android:color/darker_gray" -->
+
+
+
+</LinearLayout>
