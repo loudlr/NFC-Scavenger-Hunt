@@ -41,6 +41,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sprint.pinsightmediaplus.PsmAdView;
+
 /**
  * 
  * Activity for reading NFC messages - both via a tag and via Beam
@@ -57,6 +59,8 @@ public class NfcReaderActivity extends NfcDetectorActivity implements
     public static final String KEY_CHOCOLATE = "chocolate";
     public static final String KEY_LOTION = "lotion";
 
+    PsmAdView _adTop;
+    
     String[] m_items = new String[] {
             "Cittercism Doll", "Godiva Chocolate",
             "Bath & Body Works Moonlight Path Body Lotion",
@@ -86,6 +90,9 @@ public class NfcReaderActivity extends NfcDetectorActivity implements
         super.onCreate(savedInstanceState);
 
         setContentView(layout);
+        
+        _adTop = (PsmAdView) findViewById(R.id.adTop);
+        
         m_listView = (ListView) findViewById(R.id.recordListView);
         m_listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -136,6 +143,7 @@ public class NfcReaderActivity extends NfcDetectorActivity implements
         m_congratsButton.setOnClickListener(this);
         
 //        showList2();
+        initList();
     }
 
     @Override
@@ -321,14 +329,18 @@ public class NfcReaderActivity extends NfcDetectorActivity implements
 //        intent.setClassName(this, CouponActivity.class.getName());
 //        startActivity(intent);
         
-        Intent intent = new Intent();
-        Bundle bun = new Bundle();
-
-        bun.putInt("position", position);
-
-        intent.setClass(this, CouponActivity.class);
-        intent.putExtras(bun);
-        startActivity(intent);
+        // Show coupon only if the item has been found
+        if (((position < 3) && m_found[position].contentEquals("1")) ||
+                position == 3) {
+            Intent intent = new Intent();
+            Bundle bun = new Bundle();
+    
+            bun.putInt("position", position);
+    
+            intent.setClass(this, CouponActivity.class);
+            intent.putExtras(bun);
+            startActivity(intent);
+        }
     }
     
     private boolean allFound() {
@@ -346,5 +358,19 @@ public class NfcReaderActivity extends NfcDetectorActivity implements
         
         Log.d("NFCsh", "button clicked");
         showCoupon(3);
+    }
+    
+    private void initList() {
+        String[] values = {"", "", ""};
+        
+//        values[0] = m_items[0] + ";" + m_found[0] + ";" + KEY_DOLL;      
+//        values[1] = m_items[1] + ";" + m_found[1] + ";" + KEY_CHOCOLATE;
+//        values[2] = m_items[2] + ";" + m_found[2] + ";" + KEY_LOTION;
+        values[0] = m_items[0] + ";0;" + KEY_DOLL;      
+        values[1] = m_items[1] + ";0;" + KEY_CHOCOLATE;
+        values[2] = m_items[2] + ";0;" + KEY_LOTION;
+        
+        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, values);
+        m_listView.setAdapter(adapter);
     }
 }

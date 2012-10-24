@@ -1,40 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@android:color/background_light"
     android:orientation="vertical" >
+    
+<!--     <com.sprint.pinsightmediaplus.PsmAdView
+        android:id="@+id/adTop"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="top"
+        android:layout_gravity="top"
+        android:layout_marginBottom="27dp" /> -->
+    
+    
+
+
+    <!--
+         <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reader" />
+    -->
 
     <Button
         android:id="@+id/btnCongrats"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Congratulations!"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:textSize="30sp"
-        android:textStyle="bold" 
-        android:textColor="@android:color/holo_green_dark"
         android:focusable="false"
+        android:gravity="center"
+        android:text="Congratulations!"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"         
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
         >
     </Button>
     
-<!--     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/reader" />
- -->
     <ListView
         android:id="@+id/recordListView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:divider="@android:color/holo_green_dark"
         android:dividerHeight="2px"
-        android:orientation="vertical" />
+        android:orientation="vertical" 
+        android:layout_below="@id/btnCongrats"
+        />
 
     <!-- android:cacheColorHint="@android:color/transparent" -->
     <!-- android:divider="@android:color/darker_gray" -->
 
-
-
-</LinearLayout>
+    <com.sprint.pinsightmediaplus.PsmAdView
+        android:id="@+id/adTop"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="27dp" />
+</RelativeLayout>
